@@ -11,11 +11,14 @@ const ImageList = () => {
   const [content , setPopupContent] = useState("")
   const [upload_data , setUploadData] = useState(false)
   const [directLogin , setDirectLogin] = useState(true)
+  const [login , setLogin] = useState(false)
 
   const handleOpenPopup = () => setPopupOpen(true);
   const handleClosePopup = () => {
     setPopupOpen(false)
-    setUploadData(true)
+    if(login){
+      setUploadData(true)
+    }
   };;
 
   const handleSeedPhraseChange = (e) => {
@@ -42,6 +45,7 @@ const ImageList = () => {
         setPopupTitle("Successfully Loged In")
         setPopupContent(<div><p>You can access your data now</p></div>)
         setPopupOpen(true)
+        setLogin(true)
       }
       else{
         setPopupTitle("Error")

@@ -13,11 +13,14 @@ function ImageGallery() {
   const [popupTitle , setPopupTitle] = useState("")
   const [content , setPopupContent] = useState("")
   const [upload_data , setUploadData] = useState(false)
+  const [login , setLogin] = useState(false)
 
   const handleOpenPopup = () => setPopupOpen(true);
   const handleClosePopup = () => {
     setPopupOpen(false)
-    setUploadData(true)
+    if(login){
+      setUploadData(true)
+    }
   };
 
   const handleChange = (e) => {
@@ -81,6 +84,7 @@ function ImageGallery() {
         localStorage.setItem('token' , response.data.token)
         setPopupTitle("Successfully Loged In")
         setPopupContent(<div><p>You can access your data now</p></div>)
+        setLogin(true)
         setPopupOpen(true)
       }
       else{
